@@ -1,9 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provide/provide.dart';
 import 'package:untitled/shang_cheng_jspang/IndexPage.dart';
+import 'package:untitled/shang_cheng_jspang/providers/bbb_providers.dart';
 
-void main() => runApp(sc_main());
+import 'providers/CounterProviders.dart';
+
+
+void main() {
+  //状态管理
+  var counter = new CounterProviders();
+  var bbb_providers2 = new bbb_providers();
+  var providers = new Providers();
+  providers..provide(Provider<CounterProviders>.value(counter));
+  providers..provide(Provider<bbb_providers>.value(bbb_providers2));
+  var providerNode = ProviderNode(child: sc_main(), providers: providers);
+  runApp(providerNode);
+}
 
 class sc_main extends StatelessWidget {
   sc_main({Key key}) : super(key: key);

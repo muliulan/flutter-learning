@@ -45,7 +45,7 @@ Future<ListEntity> getDetailsDeta1() async {
   return ListEntity.fromJson(response.data);
 }
 
-List<String> getDetailsDeta2() {
+List<String> getImageList() {
   return [
     "https://images.dog.ceo/breeds/hound-ibizan/n02091244_1340.jpg",
     "https://images.dog.ceo/breeds/hound-ibizan/n02091244_177.jpg",
@@ -58,4 +58,8 @@ List<String> getDetailsDeta2() {
     "https://images.dog.ceo/breeds/hound-ibizan/n02091244_4177.jpg",
     "https://images.dog.ceo/breeds/hound-ibizan/n02091244_4395.jpg",
   ];
+}
+
+String getImage(int aa) {
+  return getImageList()[aa];
 }

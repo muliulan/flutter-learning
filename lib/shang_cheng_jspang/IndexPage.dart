@@ -6,7 +6,7 @@ import 'package:untitled/shang_cheng_jspang/pages/ccc_page.dart';
 import 'package:untitled/shang_cheng_jspang/pages/ddd_page.dart';
 
 class IndexPage extends StatefulWidget {
-  const IndexPage({Key  key}) : super(key: key);
+  const IndexPage({Key key}) : super(key: key);
 
   @override
   _IndexPageState createState() => _IndexPageState();
@@ -14,8 +14,8 @@ class IndexPage extends StatefulWidget {
 
 class _IndexPageState extends State<IndexPage> {
   List<BottomNavigationBarItem> list = [
-    new BottomNavigationBarItem(icon: new Icon(CupertinoIcons.airplane), label: "aaa"),
-    new BottomNavigationBarItem(icon: new Icon(CupertinoIcons.airplane), label: "bbb"),
+    new BottomNavigationBarItem(icon: new Icon(CupertinoIcons.airplane), label: "首页"),
+    new BottomNavigationBarItem(icon: new Icon(CupertinoIcons.airplane), label: "分类"),
     new BottomNavigationBarItem(icon: new Icon(CupertinoIcons.airplane), label: "ccc"),
     new BottomNavigationBarItem(icon: new Icon(CupertinoIcons.airplane), label: "ddd"),
   ];
@@ -38,20 +38,21 @@ class _IndexPageState extends State<IndexPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: new BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: list,
-        currentIndex: myindex,
-        onTap: (index) {
-          setState(() {
-            myindex = index;
-            currentPage = wlist[myindex];
-          });
-        },
-      ),
-      body: new Container(
-        child: currentPage,
-      ),
-    );
+        bottomNavigationBar: new BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          items: list,
+          currentIndex: myindex,
+          onTap: (index) {
+            setState(() {
+              myindex = index;
+              currentPage = wlist[myindex];
+            });
+          },
+        ),
+        //页面数据保存 3
+        body: new IndexedStack(
+          index: myindex,
+          children: wlist,
+        ));
   }
 }

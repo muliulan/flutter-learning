@@ -35,6 +35,12 @@ dependencies:
   flutter_swiper: ^1.1.6
   #屏幕适配
   flutter_screenutil: ^5.0.0
+  #打开URL 打开邮件 打开浏览器 拨打电话 兼容安卓和iOS
+  url_launcher: ^6.0.9
+  #上拉加载
+  flutter_easyrefresh: ^2.2.1
+  #状态管理
+  provide: ^1.0.2
 
 dev_dependencies:
   flutter_test:
