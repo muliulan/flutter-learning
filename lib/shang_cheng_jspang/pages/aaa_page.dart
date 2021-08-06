@@ -9,6 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:untitled/shang_cheng_jspang/config/http_url.dart';
 import 'package:untitled/shang_cheng_jspang/entity/list_entity.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -34,7 +35,7 @@ class _aaa_pageState extends State<aaa_page> with AutomaticKeepAliveClientMixin 
               infoText: "加载中",
               loadReadyText: "上拉加载..."),
           onRefresh: () {},
-          onLoad: ()async {},
+          onLoad: () async {},
           child: ListView(
             children: [banner(), jinGang(), guang_gao(), launchUrl(), goods(), FloorTitle(), hot()],
           )),
@@ -74,10 +75,7 @@ class banner extends StatelessWidget {
                 },
               );
             } else {
-              return new Text(
-                "111111",
-                style: new TextStyle(fontSize: 22.sp),
-              );
+              return Container();
             }
           }),
     );
@@ -111,7 +109,7 @@ class jinGang extends StatelessWidget {
         height: 170,
         child: GridView.count(
           crossAxisCount: 5,
-          physics: NeverScrollableScrollPhysics(),//嵌套禁止滚动
+          physics: NeverScrollableScrollPhysics(), //嵌套禁止滚动
           children: getImageList().map((e) => getView(context, e)).toList(),
         ));
   }
@@ -125,7 +123,9 @@ class guang_gao extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Column(
       children: [
-        new Text("广告位"),
+        InkWell(
+          child: new Text("广告位"),
+        ),
         Container(
             height: 30,
             width: MediaQuery.of(context).size.width,

@@ -1,9 +1,12 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provide/provide.dart';
 import 'package:untitled/shang_cheng_jspang/IndexPage.dart';
 import 'package:untitled/shang_cheng_jspang/providers/bbb_providers.dart';
+import 'package:untitled/shang_cheng_jspang/routers/application.dart';
+import 'package:untitled/shang_cheng_jspang/routers/routers.dart';
 
 import 'providers/CounterProviders.dart';
 
@@ -24,10 +27,17 @@ class sc_main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    //初始化路由
+     var fluroRouter = FluroRouter();
+     Routers.config(fluroRouter);
+     Application.fluroRouter=fluroRouter;
+
     return new ScreenUtilInit(
         designSize: Size(411, 820), //屏幕适配输入dp
         builder: () {
           return MaterialApp(
+            onGenerateRoute: Application.fluroRouter.generator,
             debugShowCheckedModeBanner: false, //取消右上角 debug
             theme: new ThemeData(primaryColor: Colors.pink), //导航栏样式
             home: new Scaffold(
