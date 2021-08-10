@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provide/provide.dart';
 import 'package:untitled/shang_cheng_jspang/config/http_url.dart';
 import 'package:untitled/shang_cheng_jspang/entity/list_entity.dart';
 import 'package:untitled/shang_cheng_jspang/pages_2/one_widget.dart';
 import 'package:untitled/shang_cheng_jspang/pages_2/two_web.dart';
+import 'package:untitled/shang_cheng_jspang/providers/cart_providers.dart';
 
 import 'my_tools_bar.dart';
 
@@ -54,7 +56,12 @@ class new_activity extends StatelessWidget {
       color: Colors.yellow,
       child: new Row(
         children: [
-          Container(width: 50, child: new Icon(Icons.ac_unit_sharp,color: Colors.red,)),
+          Container(
+              width: 50,
+              child: new Icon(
+                Icons.ac_unit_sharp,
+                color: Colors.red,
+              )),
           Container(
               alignment: Alignment.center,
               height: 50,
@@ -64,12 +71,17 @@ class new_activity extends StatelessWidget {
                 "立即购买",
                 style: new TextStyle(color: Colors.white),
               )),
-          Container(
-              alignment: Alignment.center,
-              height: 50,
-              color: Colors.green,
-              width: (MediaQuery.of(context).size.width - 50) / 2,
-              child: new Text("加入购物车", style: new TextStyle(color: Colors.white))),
+          InkWell(
+            onTap: () {
+              Provide.value<cart_providers>(context).save(text);
+            },
+            child: Container(
+                alignment: Alignment.center,
+                height: 50,
+                color: Colors.green,
+                width: (MediaQuery.of(context).size.width - 50) / 2,
+                child: new Text("加入购物车", style: new TextStyle(color: Colors.white))),
+          ),
         ],
       ),
     );

@@ -5,19 +5,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provide/provide.dart';
 import 'package:untitled/shang_cheng_jspang/IndexPage.dart';
 import 'package:untitled/shang_cheng_jspang/providers/bbb_providers.dart';
+import 'package:untitled/shang_cheng_jspang/providers/cart_providers.dart';
 import 'package:untitled/shang_cheng_jspang/routers/application.dart';
 import 'package:untitled/shang_cheng_jspang/routers/my_routers.dart';
 
 import 'providers/CounterProviders.dart';
 
-
 void main() {
   //状态管理
-  var counter = new CounterProviders();
-  var bbb_providers2 = new bbb_providers();
   var providers = new Providers();
-  providers..provide(Provider<CounterProviders>.value(counter));
-  providers..provide(Provider<bbb_providers>.value(bbb_providers2));
+  providers
+    ..provide(Provider<CounterProviders>.value(new CounterProviders()))
+    ..provide(Provider<bbb_providers>.value(new bbb_providers()))
+    ..provide(Provider<cart_providers>.value(new cart_providers()));
   var providerNode = ProviderNode(child: sc_main(), providers: providers);
   runApp(providerNode);
 }
@@ -27,11 +27,10 @@ class sc_main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     //初始化路由
-     var fluroRouter = FluroRouter();
-     MyRouters.config(fluroRouter);
-     Application.fluroRouter=fluroRouter;
+    var fluroRouter = FluroRouter();
+    MyRouters.config(fluroRouter);
+    Application.fluroRouter = fluroRouter;
 
     return new ScreenUtilInit(
         designSize: Size(411, 820), //屏幕适配输入dp
