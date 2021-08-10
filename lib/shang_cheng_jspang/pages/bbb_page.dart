@@ -6,7 +6,7 @@ import 'package:provide/provide.dart';
 import 'package:untitled/shang_cheng_jspang/config/http_url.dart';
 import 'package:untitled/shang_cheng_jspang/providers/bbb_providers.dart';
 import 'package:untitled/shang_cheng_jspang/routers/application.dart';
-import 'package:untitled/shang_cheng_jspang/routers/routers.dart';
+import 'package:untitled/shang_cheng_jspang/routers/my_routers.dart';
 
 class bbb_page extends StatefulWidget {
   const bbb_page({Key key}) : super(key: key);
@@ -18,7 +18,6 @@ class bbb_page extends StatefulWidget {
 class _bbb_pageState extends State<bbb_page> {
   List<String> l_list = [];
   var _click = 0;
-  var _clickText = "";
   ValueNotifier<List<String>> _notifier = ValueNotifier<List<String>>([]);
 
   @override
@@ -26,7 +25,6 @@ class _bbb_pageState extends State<bbb_page> {
     getListDeta().then((value) {
       setState(() {
         l_list = value.message;
-        _clickText = l_list[0];
         Provide.value<bbb_providers>(context).setText(l_list[0]);
       });
     });
@@ -64,7 +62,6 @@ class _bbb_pageState extends State<bbb_page> {
         Provide.value<bbb_providers>(context).setText(l_list[index]);
         setState(() {
           _click = index;
-          _clickText = l_list[index];
         });
       },
       child: new Container(
@@ -93,7 +90,7 @@ class _bbb_pageState extends State<bbb_page> {
                 return new InkWell(
                   onTap: () {
 
-                    Routers.navigateTo(context, Routers.detail_page,params: {"id":data[index]});
+                    MyRouters.navigateTo(context, MyRouters.detail_page,params: {"id":data[index]});
                   },
                   child: Container(
                       height: 100,

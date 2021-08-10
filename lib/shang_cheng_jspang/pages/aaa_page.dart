@@ -307,7 +307,6 @@ class hot extends StatelessWidget {
   Widget grid(BuildContext context) {
     return Container(
         child: Wrap(
-      spacing: 2,
       children: getImageList().map((e) => item(e, context)).toList(),
     ));
   }

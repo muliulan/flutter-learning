@@ -16,7 +16,7 @@ class _IndexPageState extends State<IndexPage> {
   List<BottomNavigationBarItem> list = [
     new BottomNavigationBarItem(icon: new Icon(CupertinoIcons.airplane), label: "首页"),
     new BottomNavigationBarItem(icon: new Icon(CupertinoIcons.airplane), label: "分类"),
-    new BottomNavigationBarItem(icon: new Icon(CupertinoIcons.airplane), label: "ccc"),
+    new BottomNavigationBarItem(icon: new Icon(CupertinoIcons.airplane), label: "购物车"),
     new BottomNavigationBarItem(icon: new Icon(CupertinoIcons.airplane), label: "ddd"),
   ];
   List<Widget> wlist = [
@@ -37,7 +37,11 @@ class _IndexPageState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return aa();
+  }
+
+  Widget aa() {
+    return new Scaffold(
         bottomNavigationBar: new BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           items: list,
@@ -54,5 +58,26 @@ class _IndexPageState extends State<IndexPage> {
           index: myindex,
           children: wlist,
         ));
+  }
+
+  Widget dd() {
+    return new Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: new Text("data"),
+      ),
+      bottomNavigationBar: new BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            new IconButton(onPressed: () {}, icon: new Icon(Icons.ac_unit_sharp)),
+            new SizedBox(),
+            new IconButton(onPressed: () {}, icon: new Icon(Icons.ac_unit_sharp))
+          ],
+        ),
+      ),
+    );
   }
 }

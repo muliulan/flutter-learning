@@ -6,7 +6,7 @@ import 'package:provide/provide.dart';
 import 'package:untitled/shang_cheng_jspang/IndexPage.dart';
 import 'package:untitled/shang_cheng_jspang/providers/bbb_providers.dart';
 import 'package:untitled/shang_cheng_jspang/routers/application.dart';
-import 'package:untitled/shang_cheng_jspang/routers/routers.dart';
+import 'package:untitled/shang_cheng_jspang/routers/my_routers.dart';
 
 import 'providers/CounterProviders.dart';
 
@@ -30,7 +30,7 @@ class sc_main extends StatelessWidget {
 
     //初始化路由
      var fluroRouter = FluroRouter();
-     Routers.config(fluroRouter);
+     MyRouters.config(fluroRouter);
      Application.fluroRouter=fluroRouter;
 
     return new ScreenUtilInit(

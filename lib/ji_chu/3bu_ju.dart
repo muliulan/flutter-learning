@@ -5,7 +5,7 @@ import 'package:untitled/main.dart';
 void main() => runApp(MyApp3());
 
 class MyApp3 extends StatelessWidget {
-  const MyApp3({Key  key}) : super(key: key);
+  const MyApp3({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -89,10 +89,8 @@ class MyApp3 extends StatelessWidget {
             backgroundImage: NetworkImage(url),
           ),
         ),
-        new Text(
-          "dawdawdawdawdawdw",
-          textAlign: TextAlign.left,
-        )
+        new Positioned(left: 10, child: new Text("1111")),
+        new Positioned(top: 10, child: new Text("22222")),
       ],
     );
   }
@@ -124,6 +122,25 @@ class MyApp3 extends StatelessWidget {
           leading: Icon(Icons.import_contacts_sharp),
           subtitle: new Text("zzzzzzzzz"),
         ),
+      ),
+    );
+  }
+
+  //弹性布局 就像设置权重
+  Widget getFlex() {
+    return new Container(
+      child: new Flex(
+        direction: Axis.horizontal,
+        children: [
+          new Expanded(
+            child: new Text("11111"),
+            flex: 1,
+          ),
+          new Expanded(
+            child: new Text("11111"),
+            flex: 2,
+          ),
+        ],
       ),
     );
   }

@@ -4,8 +4,8 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:label="untitled"
-        android:icon="@mipmap/ic_launcher">
+        android:label="好商城"
+        android:icon="@mipmap/iiiii">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
