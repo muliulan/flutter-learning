@@ -1,7 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MySharedPreferences {
-  static final String car_list_key = "car_list";
+  static final String car_list_key = "car_list1";
 
   void addList(String key, List<String> list) async {
     var instance = await SharedPreferences.getInstance();
@@ -10,7 +10,8 @@ class MySharedPreferences {
 
   Future<List<String>> getList(String key) async {
     var instance = await SharedPreferences.getInstance();
-    return instance.getStringList(key);
+    var stringList = instance.getStringList(key);
+    return stringList == null ? [] : stringList;
   }
 
   void del(String key) async {

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provide/provide.dart';
 import 'package:untitled/shang_cheng_jspang/config/http_url.dart';
 import 'package:untitled/shang_cheng_jspang/entity/list_entity.dart';
@@ -73,6 +74,7 @@ class new_activity extends StatelessWidget {
               )),
           InkWell(
             onTap: () {
+              Fluttertoast.showToast(msg: "加入成功",toastLength: Toast.LENGTH_SHORT);
               Provide.value<cart_providers>(context).save(text);
             },
             child: Container(
