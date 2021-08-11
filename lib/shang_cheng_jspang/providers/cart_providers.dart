@@ -5,14 +5,12 @@ class cart_providers with ChangeNotifier {
   List<String> list_cart = [];
 
   void save(String s) {
-    get().then((value) {
+    MySharedPreferences().getList(MySharedPreferences.car_list_key).then((value) {
       value.add(s);
       MySharedPreferences().addList(MySharedPreferences.car_list_key, value);
       list_cart = value;
       notifyListeners();
     });
-
-    notifyListeners();
   }
 
   void del() {
@@ -20,7 +18,18 @@ class cart_providers with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<List<String>> get() {
-    return MySharedPreferences().getList(MySharedPreferences.car_list_key);
+  void delItem(String url) {
+    myGet().then((value) {
+      value.remove(url);
+      list_cart = value;
+      notifyListeners();
+    });
+  }
+
+
+   Future<List<String>> myGet() async{
+    var list = await MySharedPreferences().getList(MySharedPreferences.car_list_key);
+    list_cart=list;
+    return list_cart;
   }
 }

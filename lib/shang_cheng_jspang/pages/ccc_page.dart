@@ -4,27 +4,43 @@ import 'package:provide/provide.dart';
 import 'package:untitled/shang_cheng_jspang/providers/cart_providers.dart';
 
 class ccc_page extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Container(
       child: new Provide<cart_providers>(
         builder: (context, child, val) {
-          return new Stack(
-            children: [
-              new Container(
-                child: new ListView(
-                  children: val.list_cart.map((e) => getView(e)).toList(),
-                ),
-              ),
-              new Positioned(
-                child: getBottom(context),
-                bottom: 0,
-              ),
-            ],
-          );
+          if (val.list_cart.length == 0) {
+            return new FutureBuilder<List<String>>(
+                future: cart_providers().myGet(),
+                builder: (context, val) {
+                  if (val.hasData) {
+                    return getList(val.data,context);
+                  } else {
+                    return new Text("1111");
+                  }
+                });
+          }
+
+          return new Container(child: getList(val.list_cart,context));
         },
       ),
+    );
+  }
+
+  Widget getList(List<String> val,BuildContext context) {
+    return new Stack(
+      children: [
+        new Container(
+          margin: EdgeInsets.only(bottom: 70),
+          child: new ListView(
+            children: val.map((e) => getView(e)).toList(),
+          ),
+        ),
+        new Positioned(
+          child: getBottom(context),
+          bottom: 0,
+        ),
+      ],
     );
   }
 
@@ -52,7 +68,7 @@ class ccc_page extends StatelessWidget {
             alignment: Alignment.topLeft,
             width: 230,
             child: Text(
-              "名字ddddddddddd名字ddddddddddd名字ddddddddddd",
+              "名字: ${url.substring(url.length - 8, url.length - 4)}",
               style: new TextStyle(fontSize: 18),
             ),
           ),
@@ -66,7 +82,13 @@ class ccc_page extends StatelessWidget {
                 "¥222",
                 style: new TextStyle(fontSize: 18, color: Colors.black26, decoration: TextDecoration.lineThrough),
               ),
-              Icon(Icons.delete_forever, color: Colors.black26),
+              InkWell(
+                onTap: () {
+                  print("1111111111");
+                  cart_providers().delItem(url);
+                },
+                child: Icon(Icons.delete_forever, color: Colors.black26),
+              )
             ],
           )
         ],
@@ -128,18 +150,4 @@ class ccc_page extends StatelessWidget {
       ),
     );
   }
-
-// Widget aa(BuildContext context) {
-//   return new Provide<CounterProviders>(builder: (context, child, counter) {
-//     return new Text("${counter.num}");
-//   });
-// }
-//
-// Widget bb(BuildContext context) {
-//   return new ElevatedButton(
-//       onPressed: () {
-//         Provide.value<CounterProviders>(context).add();
-//       },
-//       child: new Text("点击"));
-// }
 }
