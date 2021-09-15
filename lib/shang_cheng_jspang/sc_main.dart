@@ -6,6 +6,7 @@ import 'package:provide/provide.dart';
 import 'package:untitled/shang_cheng_jspang/IndexPage.dart';
 import 'package:untitled/shang_cheng_jspang/providers/bbb_providers.dart';
 import 'package:untitled/shang_cheng_jspang/providers/cart_providers.dart';
+import 'package:untitled/shang_cheng_jspang/providers/homeIndexProviders.dart';
 import 'package:untitled/shang_cheng_jspang/routers/application.dart';
 import 'package:untitled/shang_cheng_jspang/routers/my_routers.dart';
 
@@ -17,7 +18,8 @@ void main() {
   providers
     ..provide(Provider<CounterProviders>.value(new CounterProviders()))
     ..provide(Provider<bbb_providers>.value(new bbb_providers()))
-    ..provide(Provider<cart_providers>.value(new cart_providers()));
+    ..provide(Provider<cart_providers>.value(new cart_providers()))
+    ..provide(Provider<homeIndexProviders>.value(new homeIndexProviders()));
   var providerNode = ProviderNode(child: sc_main(), providers: providers);
   runApp(providerNode);
 }

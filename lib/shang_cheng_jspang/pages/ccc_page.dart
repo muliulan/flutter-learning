@@ -9,6 +9,9 @@ class ccc_page extends StatelessWidget {
     return Container(
       child: new Provide<cart_providers>(
         builder: (context, child, val) {
+
+          print("111111111111111 ::${val.list_cart.length}");
+
           if (val.list_cart.length == 0) {
             return new FutureBuilder<List<String>>(
                 future: cart_providers().myGet(),
@@ -84,7 +87,6 @@ class ccc_page extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  print("1111111111");
                   cart_providers().delItem(url);
                 },
                 child: Icon(Icons.delete_forever, color: Colors.black26),

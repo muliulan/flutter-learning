@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provide/provide.dart';
 import 'package:untitled/shang_cheng_jspang/pages/aaa_page.dart';
 import 'package:untitled/shang_cheng_jspang/pages/bbb_page.dart';
 import 'package:untitled/shang_cheng_jspang/pages/ccc_page.dart';
 import 'package:untitled/shang_cheng_jspang/pages/ddd_page.dart';
+import 'package:untitled/shang_cheng_jspang/providers/homeIndexProviders.dart';
 
 class IndexPage extends StatefulWidget {
   const IndexPage({Key key}) : super(key: key);
@@ -13,11 +15,12 @@ class IndexPage extends StatefulWidget {
 }
 
 class _IndexPageState extends State<IndexPage> {
+
   List<BottomNavigationBarItem> list = [
     new BottomNavigationBarItem(icon: new Icon(CupertinoIcons.airplane), label: "首页"),
     new BottomNavigationBarItem(icon: new Icon(CupertinoIcons.airplane), label: "分类"),
     new BottomNavigationBarItem(icon: new Icon(CupertinoIcons.airplane), label: "购物车"),
-    new BottomNavigationBarItem(icon: new Icon(CupertinoIcons.airplane), label: "ddd"),
+    new BottomNavigationBarItem(icon: new Icon(CupertinoIcons.airplane), label: "会员中心"),
   ];
   List<Widget> wlist = [
     aaa_page(),
@@ -26,36 +29,31 @@ class _IndexPageState extends State<IndexPage> {
     ddd_page(),
   ];
 
-  var myindex = 0;
-  var currentPage;
-
   @override
   void initState() {
-    currentPage = wlist[myindex];
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return aa();
+    return new Provide<homeIndexProviders>(builder: (context,child,val){
+      return aa(val.index);
+    });
   }
 
-  Widget aa() {
+  Widget aa(int index) {
     return new Scaffold(
         bottomNavigationBar: new BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           items: list,
-          currentIndex: myindex,
+          currentIndex: index,
           onTap: (index) {
-            setState(() {
-              myindex = index;
-              currentPage = wlist[myindex];
-            });
+            Provide.value<homeIndexProviders>(context).setIndex(index);
           },
         ),
         //页面数据保存 3
         body: new IndexedStack(
-          index: myindex,
+          index: index,
           children: wlist,
         ));
   }

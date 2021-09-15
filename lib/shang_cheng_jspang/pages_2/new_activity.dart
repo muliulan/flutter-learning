@@ -7,6 +7,7 @@ import 'package:untitled/shang_cheng_jspang/entity/list_entity.dart';
 import 'package:untitled/shang_cheng_jspang/pages_2/one_widget.dart';
 import 'package:untitled/shang_cheng_jspang/pages_2/two_web.dart';
 import 'package:untitled/shang_cheng_jspang/providers/cart_providers.dart';
+import 'package:untitled/shang_cheng_jspang/providers/homeIndexProviders.dart';
 
 import 'my_tools_bar.dart';
 
@@ -57,12 +58,18 @@ class new_activity extends StatelessWidget {
       color: Colors.yellow,
       child: new Row(
         children: [
-          Container(
-              width: 50,
-              child: new Icon(
-                Icons.ac_unit_sharp,
-                color: Colors.red,
-              )),
+          InkWell(
+            onTap: (){
+              Provide.value<homeIndexProviders>(context).setIndex(2);
+              Navigator.pop(context);
+            },
+            child: Container(
+                width: 50,
+                child: new Icon(
+                  Icons.ac_unit_sharp,
+                  color: Colors.red,
+                )),
+          ),
           Container(
               alignment: Alignment.center,
               height: 50,
@@ -74,7 +81,7 @@ class new_activity extends StatelessWidget {
               )),
           InkWell(
             onTap: () {
-              Fluttertoast.showToast(msg: "加入成功",toastLength: Toast.LENGTH_SHORT);
+              Fluttertoast.showToast(msg: "加入成功", toastLength: Toast.LENGTH_SHORT);
               Provide.value<cart_providers>(context).save(text);
             },
             child: Container(

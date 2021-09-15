@@ -21,7 +21,9 @@ class cart_providers with ChangeNotifier {
   void delItem(String url) {
     myGet().then((value) {
       value.remove(url);
+      MySharedPreferences().addList(MySharedPreferences.car_list_key, value);
       list_cart = value;
+      print("222222 ::${list_cart.length}");
       notifyListeners();
     });
   }
@@ -30,6 +32,7 @@ class cart_providers with ChangeNotifier {
    Future<List<String>> myGet() async{
     var list = await MySharedPreferences().getList(MySharedPreferences.car_list_key);
     list_cart=list;
+
     return list_cart;
   }
 }
